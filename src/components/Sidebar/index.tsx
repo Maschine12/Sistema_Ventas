@@ -1,7 +1,7 @@
 "use client";
 import { useAppDispatch, useAppSelector } from '@/app/redux';
 import { setIsSidebarCollapsed } from '@/state';
-import { BookUser, Clipboard, FileChartColumn, Layout, LucideIcon, Menu, Package, ShoppingCart, User, Users } from 'lucide-react';
+import { BookUser, Clipboard, FileChartColumn, Layout, LucideIcon, Menu, Package, ShoppingCart} from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react'
@@ -71,7 +71,6 @@ const Sidebar = () => {
                 <SidebarLink href='/proveedores' icon={Package} label="Proveedores" isCollapsed={isSidebarCollapsed} />
                 <SidebarLink href='/reportes' icon={FileChartColumn} label="Reportes" isCollapsed={isSidebarCollapsed} />
                 <SidebarLink href='/ventas' icon={ShoppingCart} label="Ventas" isCollapsed={isSidebarCollapsed} />
-                <SidebarLink href='/usuarios' icon={User} label="Usuarios" isCollapsed={isSidebarCollapsed} />
             </div>
             {/* Footer */}
             <div className={`${isSidebarCollapsed ? "hidden" : "block"} mb-10`}>
