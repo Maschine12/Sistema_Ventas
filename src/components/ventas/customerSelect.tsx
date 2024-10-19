@@ -64,7 +64,7 @@ const SeleccionCliente: React.FC<SeleccionClienteProps> = ({ onSeleccionar }) =>
     };
 
     return (
-        <div className="bg-white text-gray-900 p-4 rounded shadow-md col-span-2">
+        <div className="bg-gray-50 text-gray-900 p-4 rounded shadow-md col-span-2">
             <p className="font-semibold text-xl mb-4">Seleccione un cliente</p>
             {!clienteSeleccionado ? (
                 <>

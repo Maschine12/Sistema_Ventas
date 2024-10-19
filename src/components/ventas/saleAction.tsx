@@ -35,7 +35,7 @@ const RealizarVenta: React.FC<PropsRealizarVenta> = ({ carrito, clienteId, descu
                 cantidad: producto.cantidad, // Cantidad a restar del stock
             }));
 
-            const respuesta = await fetch(`http://localhost:3000/api/productos`, {
+            const respuesta = await fetch(`../api/productos`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const RealizarVenta: React.FC<PropsRealizarVenta> = ({ carrito, clienteId, descu
         setMensajeExito(null); // Reiniciar el mensaje de éxito
 
         try {
-            const respuesta = await fetch('http://localhost:3000/api/ventas', {
+            const respuesta = await fetch('../api/ventas', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -97,7 +97,6 @@ const RealizarVenta: React.FC<PropsRealizarVenta> = ({ carrito, clienteId, descu
     return (
         <div className="p-4">
             {error && <p className="text-red-500">{error}</p>}
-            {mensajeExito && <p className="text-green-500">{mensajeExito}</p>}
             <button onClick={manejarVenta} disabled={loading} className="bg-blue-500 p-4 w-full text-white px-4 py-2 rounded">
                 {loading ? 'Cargando...' : 'Realizar Venta'}
             </button>

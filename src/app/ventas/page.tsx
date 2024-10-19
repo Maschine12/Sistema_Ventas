@@ -1,5 +1,5 @@
 import React from 'react'
-import Venta from "@/components/gestionVentas/saleComponent"
+import Venta from "@/components/ventas/saleComponent"
 function Ventas() {
   return (
     <>

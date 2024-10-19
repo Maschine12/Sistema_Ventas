@@ -25,7 +25,7 @@ const Carrito: React.FC<CarritoProps> = ({ carrito, onModificarCantidad, onElimi
     const vuelto = pago !== '' ? pago - totalConDescuento : 0;
 
     return (
-        <div className="bg-white text-gray-900 p-4 rounded shadow-md">
+        <div className="bg-gray-50 text-gray-900 p-4 rounded shadow-md">
             <h2 className="font-semibold text-xl mb-4">Carrito</h2>
             {carrito.length === 0 ? (
                 <p className="text-gray-500">El carrito está vacío.</p>

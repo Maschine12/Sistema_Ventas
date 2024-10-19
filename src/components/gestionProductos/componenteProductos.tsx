@@ -7,7 +7,6 @@ import ProductUpdateForm from './productUpdateForm';
 const ProductosComponent: React.FC = () => {
     return (
         <>
-            <h1 className="text-2xl font-bold">GESTIÓN DE PRODUCTOS</h1>
             <div className='grid grid-cols-4 gap-4 py-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4'>
                 <div className='col-span-4 sm:col-span-1 md:col-span-1 lg:col-span-2'>
                     <div>

@@ -50,7 +50,6 @@ const SuppliersComponent: React.FC = () => {
 
     return (
         <>
-            <h1 className="text-2xl font-bold">GESTIÓN DE PROVEEDORES</h1>
             <div className="grid grid-cols-5 gap-4 py-4">
                 <div className="col-span-4 sm:col-span-1 lg:col-span-3">
                     <UpdateButton onUpdate={fetchSuppliers} />

@@ -116,7 +116,6 @@ const ReportComponent: React.FC = () => {
         <>
             <div className='p-3 grid grid-cols-2 gap-2 w-full'>
                 <div className="bg-gray-100 rounded p-3 w-full">
-                    <h1 className="text-2xl font-bold mb-4">Compras o Ventas</h1>
                     <DateRangePicker onDateChange={handleDateChange} />
                     {error && <p className="text-red-500">{error}</p>}
                     {dateRange.start && dateRange.end && !error ? (

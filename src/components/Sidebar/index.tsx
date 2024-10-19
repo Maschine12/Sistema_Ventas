@@ -51,7 +51,7 @@ const Sidebar = () => {
         <div className={sidebarClassNames}>
             {/* TOP LOGO*/}
             <div className={`flex flex-col items-center justify-center gap-3 pt-3 ${isSidebarCollapsed ? "px-3" : "px-5"}`}>
-                <Image src="/images/Logo.jpg" alt="Logo Empresa" width={150} height={150} className='m-0'/>
+                <Image src="/images/Logo.jpg" alt="Logo Empresa" width={150} height={150} className='border rounded-xl '/>
                 <h1 className={`${isSidebarCollapsed ? "hidden" : "block"} font-extrabold text-2xl text-center pb-3`}>Dynamics</h1>
                 <button className='md:hidden px-2 py-2 bg-gray-100 rounded-full hover:bg-blue-100' onClick={toogleSidebar}>
                     <Menu className='w-5 h-5' />

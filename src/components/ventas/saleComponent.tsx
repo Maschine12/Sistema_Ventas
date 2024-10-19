@@ -15,11 +15,13 @@ interface Producto {
 
 const Venta: React.FC = () => {
     const [carrito, setCarrito] = useState<{ id: string; name: string; priceSale: number; cantidad: number; }[]>([]);
-    const [clienteId, setClienteId] = useState<string>(""); // ID del cliente
-    const [clienteNombre, setClienteNombre] = useState<string>(""); // Nombre del cliente
+    const [clienteId, setClienteId] = useState<string>("");
+    const [clienteNombre, setClienteNombre] = useState<string>("");
     const [tipoComprobante, setTipoComprobante] = useState<string>("Boleta");
+    const [ruc, setRuc] = useState<string>("");
     const [mensaje, setMensaje] = useState<string | null>(null);
-    const [descuento] = useState<number>(0); // Estado para el descuento
+    const [descuento] = useState<number>(0);
+    const [pdfVisible, setPdfVisible] = useState<boolean>(false);
 
     const agregarProductoAlCarrito = useCallback((producto: Producto) => {
         const productoCarrito = {
@@ -54,7 +56,6 @@ const Venta: React.FC = () => {
 
     return (
         <>
-            <h1 className="text-2xl font-semibold text-gray-900 mb-6">VENTAS</h1>
             <div className="space-y-4 grid gap-4 grid-cols-4 md:grid-cols-2">
                 <div className="col-span-1">
                     <TablaProductos onAgregar={agregarProductoAlCarrito} />
@@ -66,39 +67,47 @@ const Venta: React.FC = () => {
                             onModificarCantidad={modificarCantidadProducto}
                             onEliminarProducto={eliminarProductoDelCarrito}
                         />
-                        <div className="grid grid-cols-3 gap-3">
+                        <div className="grid grid-cols-3 gap-3 space-y-4">
                             <SeleccionCliente onSeleccionar={(id, nombre) => {
                                 setClienteId(id);
-                                setClienteNombre(nombre); // Almacena el nombre del cliente
+                                setClienteNombre(nombre);
                             }} />
-                            <div className="">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Tipo de Comprobante:</label>
+                            <div className="space-y-3">
+                                <label className="font-semibold text-xl mb-4">Tipo de Comprobante:</label>
                                 <select
                                     value={tipoComprobante}
-                                    onChange={e => setTipoComprobante(e.target.value)}
+                                    onChange={e => {
+                                        setTipoComprobante(e.target.value);
+                                        if (e.target.value !== "Factura") setRuc("");
+                                    }}
                                     className="w-full p-3 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                                 >
-                                    <option value="Boleta" className="w-50 p-3">Boleta</option>
-                                    <option value="Factura" className="w-50 p-3">Factura</option>
+                                    <option value="Boleta">Boleta</option>
+                                    <option value="Factura">Factura</option>
+                                    <option value="Cotización">Cotización</option>
                                 </select>
-                                <button
-                                    onClick={() => {
-                                        if (!clienteId) {
-                                            setMensaje("Por favor, selecciona un cliente antes de generar el PDF.");
-                                            return;
-                                        }
-                                        const productosParaPDF = carrito.map(producto => ({
+                                {tipoComprobante === "Factura" && (
+                                    <div>
+                                        <label className="block text-sm font-semibold mb-2">RUC:</label>
+                                        <input
+                                            type="text"
+                                            value={ruc}
+                                            onChange={e => setRuc(e.target.value)}
+                                            className="w-full p-3 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                        />
+                                    </div>
+                                )}
+
+                                    <GenerarPDF
+                                        tipoComprobante={tipoComprobante}
+                                        productos={carrito.map(producto => ({
                                             nombre: producto.name,
                                             cantidad: producto.cantidad,
                                             precio: producto.priceSale,
-                                        }));
-                                        GenerarPDF({ tipoComprobante, productos: productosParaPDF, clienteNombre });
-                                        setMensaje("PDF generado con éxito.");
-                                    }}
-                                    className="mt-2 bg-green-500 text-white p-3 rounded w-full transition duration-300 ease-in-out hover:bg-green-600"
-                                >
-                                    Generar PDF
-                                </button>
+                                        }))}
+                                        clienteNombre={clienteNombre}
+                                        ruc={ruc}
+                                    />
                             </div>
                         </div>
                         <RealizarVenta
@@ -107,7 +116,7 @@ const Venta: React.FC = () => {
                             descuento={descuento}
                             tipoComprobante={tipoComprobante}
                             onVentaRealizada={() => {
-                                setCarrito([]); // Limpiar el carrito después de realizar la venta
+                                setCarrito([]);
                                 setMensaje("Venta realizada con éxito.");
                             }}
                         />
@@ -115,6 +124,8 @@ const Venta: React.FC = () => {
                     </div>
                 </div>
             </div>
+
+
         </>
     );
 };
