@@ -10,7 +10,7 @@ const Navbar = () => {
 
     // Obtener los estados desde Redux
     const isSidebarCollapsed = useAppSelector((state) => state.global.isSidebarCollapsed);
-    const isDarkMode = useAppSelector((state) => state.global.isDarkMode); // <-- Obtener isDarkMode
+    const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
     const toggleSidebar = () => {
         dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));

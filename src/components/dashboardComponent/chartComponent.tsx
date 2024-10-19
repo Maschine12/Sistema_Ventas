@@ -11,6 +11,13 @@ const ChartComponent: React.FC = () => {
   const [utilidadesData, setUtilidadesData] = useState<number[]>([]);
   const [tiempo, setTiempo] = useState<string[]>([]);
 
+  const saveDailyData = (ventas: number, compras: number) => {
+    const today = new Date().toLocaleDateString();
+    const dailyData = { fecha: today, ventas, compras };
+    // Guardar los datos en localStorage o en un API
+    localStorage.setItem('dailyData', JSON.stringify(dailyData));
+  };
+
   const fetchData = async () => {
     try {
       const [ventasRes, comprasRes] = await Promise.all([
@@ -66,6 +73,10 @@ const ChartComponent: React.FC = () => {
       setComprasData(comprasAcumuladas);
       setUtilidadesData(utilidadesAcumuladas);
       setTiempo(fechasFormateadas);
+
+      // Guardar los últimos datos de ventas y compras al final del día
+      saveDailyData(totalVentas, totalCompras);
+      
     } catch (error) {
       console.error("Error al obtener los datos", error);
     }

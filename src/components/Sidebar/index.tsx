@@ -1,11 +1,11 @@
 "use client";
 import { useAppDispatch, useAppSelector } from '@/app/redux';
 import { setIsSidebarCollapsed } from '@/state';
-import { BookUser, Clipboard, FileChartColumn, Layout, LucideIcon, Menu, Package, ShoppingCart} from 'lucide-react';
+import { BookUser, Clipboard, FileChartColumn, Layout, LucideIcon, Menu, Package, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react'
-
+import Image from "next/image";
 interface SidebarLinkProps {
     href: string;
     icon: LucideIcon;
@@ -45,25 +45,21 @@ const Sidebar = () => {
         dispatch(setIsSidebarCollapsed(!isSidebarCollapsed))
     };
 
-    const sidebarClassNames = `fixed flex flex-col ${isSidebarCollapsed ? "w-0 md:w-16" : "w-72 md:w-64"} bg-white transition-all duration-300 overflow-hidden h-full shadow-md z-40`
+    const sidebarClassNames = `fixed flex flex-col ${isSidebarCollapsed ? "w-0 md:w-20" : "w-72 md:w-64"} bg-white transition-all duration-300 overflow-hidden h-full shadow-md z-40`
 
     return (
         <div className={sidebarClassNames}>
             {/* TOP LOGO*/}
-            <div className={`flex gap-3 justify-between md:justify-normal items-center pt-8 ${isSidebarCollapsed ? "px-5" : "px-8"}`}>
-                <div>
-                    LOGO
-                </div>
-                <h1 className={`${isSidebarCollapsed ? "hidden" : "block"} font-extrabold text-2xl `}>Empresa</h1>
-                <button className='md:hidden px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100 '
-                    onClick={toogleSidebar}>
-                    <Menu className='w-4 h-4' />
+            <div className={`flex flex-col items-center justify-center gap-3 pt-3 ${isSidebarCollapsed ? "px-3" : "px-5"}`}>
+                <Image src="/images/Logo.jpg" alt="Logo Empresa" width={150} height={150} className='m-0'/>
+                <h1 className={`${isSidebarCollapsed ? "hidden" : "block"} font-extrabold text-2xl text-center pb-3`}>Dynamics</h1>
+                <button className='md:hidden px-2 py-2 bg-gray-100 rounded-full hover:bg-blue-100' onClick={toogleSidebar}>
+                    <Menu className='w-5 h-5' />
                 </button>
             </div>
 
-
             {/* LINKS */}
-            <div className='flex-grow mt-8'>
+            <div className='flex-grow'>
                 {/* aqui los links */}
                 <SidebarLink href='/dashboard' icon={Layout} label="Panel" isCollapsed={isSidebarCollapsed} />
                 <SidebarLink href='/clientes' icon={BookUser} label="Clientes" isCollapsed={isSidebarCollapsed} />

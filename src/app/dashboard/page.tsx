@@ -14,17 +14,18 @@ const Dashboard = () => {
   const [ratio, setRatio] = useState(0);
   const [isVentasUp, setIsVentasUp] = useState(true);
   const [isComprasUp, setIsComprasUp] = useState(true);
-  const [isUtilidadUp, setIsUtilidadUp] = useState(true);
-  const [isRatioUp, setIsRatioUp] = useState(true);
-  const [indicadorVentas,setIndicadorVentas]=useState(0);
-  const [indicadorCompras,setIndicadorCompras]=useState(0);
-  const updateCardStatus = () => {
-    setIsVentasUp(totalVentas > totalCompras);
-    setIsComprasUp(totalCompras > totalVentas);
+  const [isUtilidadUp, setIsUtilidadUp] = useState(false);
+  const [isRatioUp, setIsRatioUp] = useState(false);
+  const [indicadorVentas, setIndicadorVentas] = useState(0);
+  const [indicadorCompras, setIndicadorCompras] = useState(0);
+
+  const updateCardStatus = (ventas: number, compras: number, utilidad: number, ratio: number) => {
+    setIsVentasUp(ventas > compras);
+    setIsComprasUp(compras > ventas);
     setIsUtilidadUp(utilidad > 0);
     setIsRatioUp(ratio > 1);
-    setIndicadorVentas(totalVentas-totalCompras);
-    setIndicadorCompras(totalVentas-totalCompras);
+    setIndicadorVentas(ventas - compras);
+    setIndicadorCompras(ventas - compras);
   };
 
   useEffect(() => {
@@ -56,27 +57,31 @@ const Dashboard = () => {
         console.error("Error al obtener las compras:", error);
       }
     };
+
     fetchVentas();
     fetchCompras();
   }, []);
 
   useEffect(() => {
     // Calcular utilidad y ratio cuando se actualizan las ventas o compras
-    setUtilidad(Number((totalVentas - totalCompras).toFixed(2))); // Calcular utilidad
-    setRatio(Number((totalVentas / totalCompras).toFixed(4))); // Calcular ratio
+    const calculatedUtilidad = Number((totalVentas - totalCompras).toFixed(2));
+    const calculatedRatio = totalCompras > 0 ? Number((totalVentas / totalCompras).toFixed(4)) : 0;
 
-    // Actualizar el estado de las tarjetas
-    updateCardStatus();
+    setUtilidad(calculatedUtilidad);
+    setRatio(calculatedRatio);
+
+    // Actualizar el estado de las tarjetas con los valores calculados
+    updateCardStatus(totalVentas, totalCompras, calculatedUtilidad, calculatedRatio);
   }, [totalVentas, totalCompras]);
 
   return (
     <>
       {/* Tarjetas de Finanzas */}
       <div className='mx-auto py-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full'>
-        <Card_Finanzas icon={<ShoppingCart />} mount={totalVentas.toString()} desc={'Ventas'} up={isVentasUp} p={(indicadorVentas.toFixed(2)).toString()} />
-        <Card_Finanzas icon={<Banknote />} mount={totalCompras.toString()} desc={'Compras'} up={isComprasUp} p={(indicadorCompras.toFixed(2)).toString()} />
-        <Card_Finanzas icon={<HandCoins />} mount={utilidad.toString()} desc={'Utilidades'} up={isUtilidadUp} p={(((ratio-1).toFixed(4)).toString())} />
-        <Card_Ratio icon={<HeartPulse />} mount={ratio.toString()} desc={'Ratio de Desempeño'} up={isRatioUp} p={(((ratio-1)*100).toFixed(4)).toString()} />
+        <Card_Finanzas icon={<ShoppingCart />} mount={(totalVentas.toFixed(2)).toString()} desc={'Ventas'} up={isVentasUp} p={(indicadorVentas.toFixed(2)).toString()} />
+        <Card_Finanzas icon={<Banknote />} mount={(totalCompras.toFixed(2)).toString()} desc={'Compras'} up={isComprasUp} p={(indicadorCompras.toFixed(2)).toString()} />
+        <Card_Finanzas icon={<HandCoins />} mount={utilidad.toString()} desc={'Utilidades'} up={isUtilidadUp} p={(((ratio - 1).toFixed(4)).toString())} />
+        <Card_Ratio icon={<HeartPulse />} mount={ratio.toString()} desc={'Ratio de Desempeño'} up={isRatioUp} p={(((ratio - 1) * 100).toFixed(4)).toString()} />
       </div>
 
       {/* Gráfico y Tabla de Usuarios */}
