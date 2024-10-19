@@ -114,8 +114,8 @@ const ReportComponent: React.FC = () => {
     return (
 
         <>
-            <div className='p-3 grid grid-cols-2 gap-2 w-full'>
-                <div className="bg-gray-100 rounded p-3 w-full">
+            <div className='px-5 grid grid-cols-1 md:grid-cols-2 gap-10 w-full'>
+                <div className="bg-gray-100 rounded p-4">
                     <DateRangePicker onDateChange={handleDateChange} />
                     {error && <p className="text-red-500">{error}</p>}
                     {dateRange.start && dateRange.end && !error ? (
@@ -127,12 +127,13 @@ const ReportComponent: React.FC = () => {
                         !error && <p className="text-red-500">Por favor, selecciona un rango de fechas.</p>
                     )}
                 </div>
-                <div className='mx-5 bg-gray-100 rounded p-3 w-full'>
+                <div className='mx-5 bg-gray-100 rounded p-4'>
                     <h1 className="text-2xl font-bold mb-4">Reporte de Productos Stock Bajo</h1>
                     <ExcelGeneratorLowStock products={lowStockProducts} />
                 </div>
             </div>
         </>
+
     );
 };
 

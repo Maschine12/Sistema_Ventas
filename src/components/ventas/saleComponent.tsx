@@ -56,8 +56,8 @@ const Venta: React.FC = () => {
 
     return (
         <>
-            <div className="space-y-4 grid gap-4 grid-cols-4 md:grid-cols-2">
-                <div className="col-span-1">
+            <div className="grid grid-cols-3 gap-6 ">
+                <div className="col-span-2 ">
                     <TablaProductos onAgregar={agregarProductoAlCarrito} />
                 </div>
                 <div className="col-span-1">
@@ -72,7 +72,7 @@ const Venta: React.FC = () => {
                                 setClienteId(id);
                                 setClienteNombre(nombre);
                             }} />
-                            <div className="space-y-3">
+                            <div className="space-y-3 bg-gray-50 shadow-sm rounded-lg p-3 ">
                                 <label className="font-semibold text-xl mb-4">Tipo de Comprobante:</label>
                                 <select
                                     value={tipoComprobante}

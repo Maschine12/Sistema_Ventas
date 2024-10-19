@@ -62,7 +62,7 @@ const ProductList: React.FC<TablaCustomerProps> = () => {
         <div className=''>
             <button
                 onClick={fetchCustomers}
-                className="flex items-center w-max p-2 mb-4 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+                className="flex items-center w-max p-3 mb-4 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
             >
                 <RefreshCw className="mr-2" />
                 Actualizar

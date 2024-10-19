@@ -50,7 +50,7 @@ const SuppliersComponent: React.FC = () => {
 
     return (
         <>
-            <div className="grid grid-cols-5 gap-4 py-4">
+            <div className="grid grid-cols-5 gap-10 py-4">
                 <div className="col-span-4 sm:col-span-1 lg:col-span-3">
                     <UpdateButton onUpdate={fetchSuppliers} />
                     {loading ? (

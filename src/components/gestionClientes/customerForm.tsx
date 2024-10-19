@@ -107,7 +107,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ customer }) => {
     }, [message, error]);
 
     return (
-        <form onSubmit={handleSubmit} className="bg-gray-100 p-6 rounded-lg shadow-md max-w-md mx-auto space-y-4">
+        <form onSubmit={handleSubmit} className="bg-gray-100 p-6 rounded-lg shadow-md space-y-4">
             <h2 className="text-2xl font-semibold text-gray-700">
                 {customer ? 'Editar Cliente' : 'Añadir Cliente'}
             </h2>

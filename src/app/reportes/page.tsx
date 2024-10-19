@@ -14,7 +14,6 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-2">Reportes</h1>
       <div className="flex mb-2 p-1">
         <ReportComponent />
       </div>

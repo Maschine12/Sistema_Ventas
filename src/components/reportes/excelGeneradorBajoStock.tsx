@@ -40,18 +40,16 @@ const ExcelGeneratorLowStock: React.FC<ExcelGeneratorLowStockProps> = ({ product
     return (
         <>
             <p className='text-green-500 mb-1'>Nombre del Archivo Stock</p>
-            <div className='space-x-2'>
-                <input
-                    type="text"
-                    value={fileName}
-                    onChange={(e) => setFileName(e.target.value)}
-                    placeholder="Nombre del archivo"
-                    className="border rounded p-3 bg-gray-50"
-                />
-                <button onClick={handleGenerateExcel} className="p-3 bg-blue-500 text-white rounded">
-                    Excel de Stock
-                </button>
-            </div>
+            <input
+                type="text"
+                value={fileName}
+                onChange={(e) => setFileName(e.target.value)}
+                placeholder="Nombre del archivo"
+                className="border rounded p-3 bg-gray-50"
+            />
+            <button onClick={handleGenerateExcel} className="p-3 bg-blue-500 text-white rounded">
+                Excel de Stock
+            </button>
         </>
     );
 };

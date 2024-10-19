@@ -160,7 +160,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ product }) => {
 
     return (
         <div className='pt-9'>
-            <form onSubmit={handleSubmit} className="bg-gray-100 p-6 rounded-lg shadow-md max-w-md mx-auto space-y-4">
+            <form onSubmit={handleSubmit} className="bg-gray-100 p-6 rounded-lg shadow-md space-y-4">
             <h2 className="text-2xl font-semibold text-gray-700">
                 {product ? 'Editar Producto' : 'Añadir Producto'}
             </h2>

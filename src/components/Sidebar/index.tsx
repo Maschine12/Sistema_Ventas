@@ -50,9 +50,11 @@ const Sidebar = () => {
     return (
         <div className={sidebarClassNames}>
             {/* TOP LOGO*/}
-            <div className={`flex flex-col items-center justify-center gap-3 pt-3 ${isSidebarCollapsed ? "px-3" : "px-5"}`}>
-                <Image src="/images/Logo.jpg" alt="Logo Empresa" width={150} height={150} className='border rounded-xl '/>
-                <h1 className={`${isSidebarCollapsed ? "hidden" : "block"} font-extrabold text-2xl text-center pb-3`}>Dynamics</h1>
+            <div className={`flex flex-col-2 items-center justify-center gap-3 pt-3 ${isSidebarCollapsed ? "px-3" : "px-5"}`}>
+                <div className='col-span-1'>
+                    <Image src="/images/Logo.jpg" alt="Logo Empresa" width={150} height={150} className='border rounded-xl ' />
+                    <h1 className={`${isSidebarCollapsed ? "hidden" : "block"} font-extrabold text-2xl text-center pb-3`}>Dynamics</h1>
+                </div>
                 <button className='md:hidden px-2 py-2 bg-gray-100 rounded-full hover:bg-blue-100' onClick={toogleSidebar}>
                     <Menu className='w-5 h-5' />
                 </button>

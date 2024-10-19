@@ -121,7 +121,7 @@ const CustomerUpdateForm: React.FC = () => {
     };
 
     return (
-        <div className="bg-gray-100 p-6 rounded-lg shadow-md max-w-md mx-auto space-y-4">
+        <div className="bg-gray-100 p-6 rounded-lg shadow-md space-y-4">
             <h2 className="text-2xl font-semibold text-gray-700">Actualizar Cliente</h2>
 
             {error && <p className="text-red-500">{error}</p>}

@@ -97,7 +97,7 @@ const RealizarVenta: React.FC<PropsRealizarVenta> = ({ carrito, clienteId, descu
     return (
         <div className="p-4">
             {error && <p className="text-red-500">{error}</p>}
-            <button onClick={manejarVenta} disabled={loading} className="bg-blue-500 p-4 w-full text-white px-4 py-2 rounded">
+            <button onClick={manejarVenta} disabled={loading} className="bg-blue-500 p-4 w-full text-white rounded">
                 {loading ? 'Cargando...' : 'Realizar Venta'}
             </button>
         </div>

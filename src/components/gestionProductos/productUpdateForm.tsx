@@ -166,7 +166,7 @@ const ProductUpdateForm: React.FC = () => {
     };
 
     return (
-        <div className="bg-gray-100 mt-9 p-6 rounded-lg shadow-md max-w-md mx-auto space-y-4">
+        <div className="bg-gray-100 mt-9 p-6 rounded-lg shadow-md space-y-4">
             <h2 className="text-2xl font-semibold text-gray-700">Actualizar Producto</h2>
             {error && <p className="text-red-500">{error}</p>}
             {successMessage && <p className="text-green-500">{successMessage}</p>}

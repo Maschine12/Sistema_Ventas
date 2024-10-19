@@ -50,7 +50,7 @@ const SupplierTable: React.FC<SupplierTableProps> = ({ suppliers, onDelete }) =>
                 </thead>
                 <tbody className="items-center">
                     {sortedSuppliers.map((supplier) => (
-                        <tr key={supplier._id} className={`${isDarkMode ? "bg-gray-300 border-gray-900 hover:bg-gray-400 text-gray-700" : "bg-white hover:bg-gray-50 text-gray-700"}`}>
+                        <tr key={supplier._id} className={`${isDarkMode ? "bg-gray-300 border-gray-900 hover:bg-gray-400 text-gray-700" : "bg-gray-50 hover:bg-gray-50 text-gray-700"}`}>
                             <td className="px-6 py-4 whitespace-nowrap">{supplier.name}</td>
                             <td className="px-6 py-4">{supplier.contact}</td>
                             <td className="px-6 py-4">{supplier.email}</td>
