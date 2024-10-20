@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '@/app/redux';
 
-const API_URL = 'http://localhost:3000/api/proveedores';
+const API_URL = '../api/proveedores';
 
 const SupplierForm: React.FC<{ supplier?: any; onClose: () => void }> = ({ supplier, onClose }) => {
     const isDarkMode = useAppSelector((state) => state.global.isDarkMode);

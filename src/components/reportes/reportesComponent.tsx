@@ -46,7 +46,7 @@ const ReportComponent: React.FC = () => {
 
     const fetchSales = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/ventas');
+            const response = await fetch('../api/ventas');
             const data: IVenta[] = await response.json();
             const salesWithPrices = data.map(sale => ({
                 ...sale,
@@ -63,7 +63,7 @@ const ReportComponent: React.FC = () => {
 
     const fetchPurchases = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/compras');
+            const response = await fetch('../api/compras');
             const data: IPurchase[] = await response.json();
             setPurchases(data);
         } catch (error) {
@@ -73,7 +73,7 @@ const ReportComponent: React.FC = () => {
 
     const fetchLowStockProducts = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/productos'); // Ajusta la URL si es necesario
+            const response = await fetch('../api/productos'); // Ajusta la URL si es necesario
             const data: IProduct[] = await response.json();
             const lowStock = data.filter(product => product.stock < 10);
             setLowStockProducts(lowStock);

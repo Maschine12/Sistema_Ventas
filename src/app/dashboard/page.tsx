@@ -31,7 +31,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchVentas = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/ventas');
+        const response = await fetch('../api/ventas');
         const data = await response.json();
 
         // Sumar los totales de las ventas
@@ -45,7 +45,7 @@ const Dashboard = () => {
 
     const fetchCompras = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/compras');
+        const response = await fetch('../api/compras');
         const data = await response.json();
 
         // Sumar los totales de las compras asegurándose de que son números

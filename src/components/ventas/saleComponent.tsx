@@ -67,7 +67,7 @@ const Venta: React.FC = () => {
                             onModificarCantidad={modificarCantidadProducto}
                             onEliminarProducto={eliminarProductoDelCarrito}
                         />
-                        <div className="grid grid-cols-3 gap-3 space-y-4">
+                        <div className="grid grid-cols-3 gap-3">
                             <SeleccionCliente onSeleccionar={(id, nombre) => {
                                 setClienteId(id);
                                 setClienteNombre(nombre);

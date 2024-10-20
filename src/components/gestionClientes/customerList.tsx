@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import TablaProductos from '@/components/gestionClientes/customerTable';
 import { RefreshCw } from 'lucide-react';
+import TablaCustomers from '@/components/gestionClientes/customerTable';
 interface TablaCustomerProps {
     categoryFilter: string;
 }
@@ -14,7 +14,7 @@ const ProductList: React.FC<TablaCustomerProps> = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('http://localhost:3000/api/clientes');
+            const response = await fetch('../api/clientes');
             if (!response.ok) {
                 throw new Error('Error al obtener los clientes');
             }
@@ -33,7 +33,7 @@ const ProductList: React.FC<TablaCustomerProps> = () => {
 
     const handleDelete = async (productId: string) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/clientes`, {
+            const response = await fetch(`../api/clientes`, {
                 method: 'DELETE',
                 body: JSON.stringify({ id: productId }),
                 headers: {
@@ -67,7 +67,7 @@ const ProductList: React.FC<TablaCustomerProps> = () => {
                 <RefreshCw className="mr-2" />
                 Actualizar
             </button>
-            <TablaProductos customers={customers} onDelete={handleDelete} />
+            <TablaCustomers customers={customers} onDelete={handleDelete} />
         </div>
     );
 };

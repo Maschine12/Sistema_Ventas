@@ -31,7 +31,7 @@ const SuplieerUpdateForm: React.FC = () => {
     // Función para cargar productos desde la base de datos
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/proveedores');
+            const response = await fetch('../api/proveedores');
             if (!response.ok) {
                 throw new Error('Error al cargar productos');
             }

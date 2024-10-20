@@ -6,7 +6,7 @@ interface Proveedor {
     _id: string;
     name: string;
     ruc: string;
-    phone: string; // Asegúrate de que este campo exista en tu API
+    phone: string;
 }
 
 interface SeleccionProveedorProps {

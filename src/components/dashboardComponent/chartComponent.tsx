@@ -19,7 +19,6 @@ const ChartComponent: React.FC = () => {
       ]);
 
       const fechasAcumuladas: Record<string, { ventas: number; compras: number }> = {};
-      const hoy = new Date();
 
       // Procesar las compras
       comprasRes.data.forEach((compra: { purchaseDate: string; totalAmount: number }) => {
@@ -39,12 +38,17 @@ const ChartComponent: React.FC = () => {
         fechasAcumuladas[fecha].ventas += venta.total;
       });
 
+      // Ordenar las fechas
+      const fechasOrdenadas = Object.keys(fechasAcumuladas).sort((a, b) => {
+        return new Date(a).getTime() - new Date(b).getTime();
+      });
+
       const ventasAcumuladas: number[] = [];
       const comprasAcumuladas: number[] = [];
       const utilidadesAcumuladas: number[] = [];
       let totalVentas = 0, totalCompras = 0;
 
-      Object.keys(fechasAcumuladas).forEach(fecha => {
+      fechasOrdenadas.forEach(fecha => {
         totalVentas += fechasAcumuladas[fecha].ventas;
         totalCompras += fechasAcumuladas[fecha].compras;
         ventasAcumuladas.push(totalVentas);
@@ -55,7 +59,7 @@ const ChartComponent: React.FC = () => {
       setVentasData(ventasAcumuladas);
       setComprasData(comprasAcumuladas);
       setUtilidadesData(utilidadesAcumuladas);
-      setTiempo(Object.keys(fechasAcumuladas));
+      setTiempo(fechasOrdenadas);
 
     } catch (error) {
       console.error("Error al obtener los datos", error);

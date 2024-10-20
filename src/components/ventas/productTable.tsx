@@ -21,7 +21,7 @@ const TablaProductos: React.FC<TablaProductosProps> = ({ onAgregar }) => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3000/api/productos")
+            .get("../api/productos")
             .then((response) => setProductos(response.data))
             .catch((error) => console.error("Error al obtener productos:", error));
     }, []);

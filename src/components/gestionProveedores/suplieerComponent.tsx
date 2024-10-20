@@ -16,7 +16,7 @@ const SuppliersComponent: React.FC = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('http://localhost:3000/api/proveedores');
+            const response = await fetch('../api/proveedores');
             if (!response.ok) throw new Error('Error al obtener los proveedores');
             const data = await response.json();
             setSuppliers(data);
@@ -29,7 +29,7 @@ const SuppliersComponent: React.FC = () => {
 
     const handleDelete = async (_id: string) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/proveedores/${_id}`, {
+            const response = await fetch(`../api/proveedores/${_id}`, {
                 method: 'DELETE',
             });
             if (!response.ok) throw new Error('Error al eliminar el proveedor');

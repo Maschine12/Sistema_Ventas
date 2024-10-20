@@ -20,7 +20,7 @@ const SeleccionCliente: React.FC<SeleccionClienteProps> = ({ onSeleccionar }) =>
     const [mostrandoPlaceholder, setMostrandoPlaceholder] = useState<boolean>(true);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/clientes')
+        axios.get('../api/clientes')
             .then((response) => setClientes(response.data))
             .catch((error) => console.error("Error al obtener clientes:", error));
     }, []);
@@ -64,7 +64,7 @@ const SeleccionCliente: React.FC<SeleccionClienteProps> = ({ onSeleccionar }) =>
     };
 
     return (
-        <div className="bg-gray-50 text-gray-900 p-4 rounded shadow-md col-span-2">
+        <div className="bg-gray-50 text-gray-900 p-4 rounded shadow-md col-span-2 space-y-3">
             <p className="font-semibold text-xl mb-4">Seleccione un cliente</p>
             {!clienteSeleccionado ? (
                 <>
@@ -73,17 +73,17 @@ const SeleccionCliente: React.FC<SeleccionClienteProps> = ({ onSeleccionar }) =>
                         placeholder="Buscar cliente..."
                         value={busqueda}
                         onChange={manejarCambioBusqueda}
-                        className="justify-center w-50 p-3 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                        className="justify-center w-full p-3 bg-gray-50 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                         onFocus={() => setMostrandoPlaceholder(false)}
                     />
                     <button
                         onClick={manejarBusqueda}
-                        className="w-40 p-3 ml-2 bg-blue-500 text-white rounded mb-2"
+                        className="w-full p-3 bg-blue-500 text-white rounded"
                     >
                         Buscar
                     </button>
                     {!mostrandoPlaceholder && clientesFiltrados.length > 0 && (
-                        <div className="max-h-40 overflow-y-auto border border-gray-300 rounded">
+                        <div className="overflow-y-auto border border-gray-300 rounded">
                             {clientesFiltrados.map(cliente => (
                                 <div
                                     key={cliente._id}

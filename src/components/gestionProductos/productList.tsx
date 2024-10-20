@@ -14,7 +14,7 @@ const ProductList: React.FC<ProductListProps> = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('http://localhost:3000/api/productos');
+            const response = await fetch('../api/productos');
             if (!response.ok) {
                 throw new Error('Error al obtener los productos');
             }
@@ -33,7 +33,7 @@ const ProductList: React.FC<ProductListProps> = () => {
 
     const handleDelete = async (productId: string) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/productos`, {
+            const response = await fetch(`../api/productos`, {
                 method: 'DELETE',
                 body: JSON.stringify({ id: productId }),
                 headers: {
